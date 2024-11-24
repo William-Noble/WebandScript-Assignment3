@@ -1,66 +1,45 @@
-<%- include ../partials/header.ejs %>
-<%- include ../partials/main_nav.ejs %>
-<!-- Main Content -->
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Book Database-->
 <main class="container">
     <div class="row">
-        <div class="col-md-offset-3 col-md-10">
+        <div class="offset-md-1 col-md-10">
             <h1><%= title %></h1>
-            <% if(typeof displayName=='string' && displayName) { %>
-                <a href="/book-list/add" class="btn btn-primary" role="button">
-                <i class="fas fa-plus-circle"></i> Add a Book </a>
             <br>
-            <% } %>
-            <br>
-    <table class= "table table-bordered table-striped table-hover">
-    <tr class="d-flex">
-    <% if(typeof displayName=='string' && displayName) { %>
-        <th class="text-center col-2">Name</th>
-        <th class="text-center col-2">Author</th>
-        <th class="text-center col-1">Published</th>
-        <th class="text-center col-5">Description</th>
-        <th class="text-center col-1">Price</th>
-        <th class="text-center col-1"></th>
-        <th class="text-center col-1"></th>
-    <% } else { %>
-    <th class="text-center col-2">Name</th>
-        <th class="text-center col-2">Author</th>
-        <th class="text-center col-1">Published</th>
-        <th class="text-center col-6">Description</th>
-        <th class="text-center col-1">Price</th>
-    <% } %>
-
-    </tr>
-    <!-- Repeat the template -->
-    <% for(let count=0; count < Booklist.length; count++) { %>
-        <tr class="d-flex">
-        <% if(typeof displayName=='string' && displayName) { %>
-            <td class="text-center col-2"><%= Booklist[count].name %></td>
-            <td class="text-center col-2"><%= Booklist[count].author %></td>
-            <td class="text-center col-1"><%= Booklist[count].published %></td>
-            <td class="text-center col-5"><%= Booklist[count].description %></td>
-            <td class="text-center col-1"><%= Booklist[count].price %></td>
-            <td class="text-center col-1">
-                <a href="/book-list/edit/<%= Booklist[count]._id %>"
-                    class="btn btn-primary">
-                    <i class="fas fa-pencil-alt"></i> Edit </a>
-            </td>
-            <td class="text-center col-1">
-                <a href="/book-list/delete/<%= Booklist[count]._id %>"
-                    class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> Delete </a>
-            </td>
-        <% } else { %>
-            <td class="text-center col-2"><%= Booklist[count].name %></td>
-            <td class="text-center col-2"><%= Booklist[count].author %></td>
-            <td class="text-center col-1"><%= Booklist[count].published %></td>
-            <td class="text-center col-6"><%= Booklist[count].description %></td>
-            <td class="text-center col-1"><%= Booklist[count].price %></td>
-        <% } %>       
-        </tr>
-    <% } %>
-    </table>
-</div>
-</div>
+            <a href="/bookslist/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Book
+            </a>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="d-flex">
+                    <th class="text-center col-2">Name</th>
+                    <th class="text-center col-2">Author</th>
+                    <th class="text-center col-1">Published</th>
+                    <th class="col-4">Description</th>
+                    <th class="text-center col-1">Price</th>
+                </tr>
+                <% for(let count=0;count<BookList.length;count++) { %>
+                <tr class="d-flex">
+                    <td class="text-center col-2"><%= BookList[count].Name %></td>
+                    <td class="text-center col-2"><%= BookList[count].Author %></td>
+                    <td class="text-center col-1"><%=BookList[count].Published%></td>
+                    <td class="col-4"><%= BookList[count].Description %> </td>
+                    <td class="text-center col-1"><%= BookList[count].Price %></td>
+                    <td class="text-center col-1">
+                        <a href="/bookslist/edit/<%= BookList[count]._id%>"
+                            class="btn btn-primary btn-sm">
+                        <i class="fas fa-pencil-alt"></i>Edit
+                    </a>
+                    </td>
+                    <td class="text-center col-1">
+                        <a href="/bookslist/delete/<%= BookList[count]._id%>"
+                            class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>Delete
+                    </a>
+                    </td>
+                </tr>    
+                    <%} %>
+            </table>
+        </div>
+    </div>
 </main>
-<%- include ../partials/bottom_nav.ejs %>
-<%- include ../partials/footer.ejs %>
+<%- include ../Partials/footer.ejs%>

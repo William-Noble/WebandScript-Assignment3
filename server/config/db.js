@@ -1,6 +1,1 @@
-module.exports = 
-{
-//    "URI": "mongodb://localhost/bookStore"
-    "URI":"mongodb+srv://Ahmed1:lpVQ7AvcNeKODNlB@mongodbserver.hsq1oaw.mongodb.net/BookStore",
-    "secret":"SomeSecret"
-}
+module.exports={"URI":"mongodb://127.0.0.1:27017/BookLib"}

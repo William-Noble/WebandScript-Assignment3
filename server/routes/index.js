@@ -1,33 +1,29 @@
-let express = require('express');
-let router = express.Router();
-let indexController = require('../controller/index');
-let jwt = require('jsonwebtoken');
+var express = require('express');
+var router = express.Router();
+
+/* GET index page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Home' });
+});
 /* GET home page. */
-router.get('/', indexController.displayHomePage);
-
-/* GET home page. */
-router.get('/home', indexController.displayHomePage);
-
-/* GET about page. */
-router.get('/about',indexController.displayAboutPage);
-
+router.get('/home', function(req, res, next) {
+  res.render('index', { title: 'Home' });
+});
+/* GET About page. */
+router.get('/aboutus', function(req, res, next) {
+  res.render('index', { title: 'About us' });
+});
 /* GET products page. */
-router.get('/products',indexController.displayProductPage);
+router.get('/products', function(req, res, next) {
+  res.render('index', { title: 'Products' });
+});
+/* GET service page. */
+router.get('/service', function(req, res, next) {
+  res.render('index', { title: 'Service' });
+});
+/* GET contactus page. */
+router.get('/contactus', function(req, res, next) {
+  res.render('index', { title: 'Contact Us' });
+});
 
-/* GET services page. */
-router.get('/services',indexController.displayServicePage);
-// CRUD --> CREATE, Read, Update , Delete
-// Get - Post - Read - Put
-/* GET contact page. */
-router.get('/contact', indexController.displayContactPage);
-// Get router for login page
-router.get('/login',indexController.displayLoginPage);
-//post router for login page
-router.post('/login',indexController.processLoginPage);
-// Get router for registration page
-router.get('/register',indexController.displayRegisterPage);
-//post router for registration page
-router.post('/register',indexController.processRegisterPage);
-// Get router for logout page
-router.get('/logout',indexController.performLogout);
 module.exports = router;
