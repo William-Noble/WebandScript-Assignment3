@@ -8,28 +8,31 @@
             <form class="form" method="POST">
                 <div class="form-group">
                     <label for="nameTextField">Assignment Title</label>
-                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the Assignment Title" name="Name" required>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the Assignment Title" name="Title" required>
                 </div>
                 <div class="form-group">
-                    <label for="authorTextField">Assignment Author</label>
-                    <input type="text" class="form-control" id="authorTextField" placeholder="Enter the Assignment Author" name="Author" required>
+                    <label for="dateTimeTextField">Assignment DateTime</label>
+                    <input type="DateTime-local" class="form-control" id="dateTimeTextField" placeholder="Enter the Assignment DateTime" name="DateTime" required>
                 </div>
                 <div class="form-group">
-                    <label for="publishedTextField">Published</label>
-                    <input type="text" class="form-control" id="publishedTextField" placeholder="Enter the Published year" name="Published" required>
+                    <label for="locationTextField">Location</label>
+                    <input type="text" class="form-control" id="locationTextField" placeholder="Enter the Location year" name="Location" required>
                 </div>
                 <div class="form-group">
                     <label for="descriptionTextArea">Assignment Description</label>
                     <textarea type="text" class="form-control" id="descriptionTextArea"  placeholder="enter the Assignment Description" name="Description" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="priceTextField">Price</label>
-                    <input type="text" class="form-control" id="priceTextField" placeholder="Assignment's Price" name="Price" required>
+                    <label for="userTextField">User</label>
+                    <input type="text" class="form-control" id="userTextField" placeholder="Assignment's User" name="User" required>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit
-                <i class="fas fa-edit"></i></button>  
-                <button class="btn btn-warning" type="submit">Cancel
-                    <i class="fas fa-undo"></i></button>    
+                <i class="fas fa-edit"></i></button>
+                <a href="/assignmentslist">
+                    <button class="btn btn-warning" type="button">Cancel
+                        <i class="fas fa-undo"></i>
+                    </button>    
+                </a>
             </form>
         </div>
     </div>

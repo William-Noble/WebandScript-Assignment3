@@ -11,19 +11,19 @@
             </a>
             <table class="table table-bordered table-striped table-hover">
                 <tr class="d-flex">
-                    <th class="text-center col-2">Name</th>
-                    <th class="text-center col-2">Author</th>
-                    <th class="text-center col-1">Published</th>
+                    <th class="text-center col-2">Title</th>
+                    <th class="text-center col-2">DateTime</th>
+                    <th class="text-center col-1">Location</th>
                     <th class="col-4">Description</th>
-                    <th class="text-center col-1">Price</th>
+                    <th class="text-center col-1">User</th>
                 </tr>
                 <% for(let count=0;count<AssignmentList.length;count++) { %>
                 <tr class="d-flex">
-                    <td class="text-center col-2"><%= AssignmentList[count].Name %></td>
-                    <td class="text-center col-2"><%= AssignmentList[count].Author %></td>
-                    <td class="text-center col-1"><%=AssignmentList[count].Published%></td>
+                    <td class="text-center col-2"><%= AssignmentList[count].Title %></td>
+                    <td class="text-center col-2"><%= AssignmentList[count].DateTime %></td>
+                    <td class="text-center col-1"><%= AssignmentList[count].Location %></td>
                     <td class="col-4"><%= AssignmentList[count].Description %> </td>
-                    <td class="text-center col-1"><%= AssignmentList[count].Price %></td>
+                    <td class="text-center col-1"><%= AssignmentList[count].User %></td>
                     <td class="text-center col-1">
                         <a href="/assignmentslist/edit/<%= AssignmentList[count]._id%>"
                             class="btn btn-primary btn-sm">

@@ -12,6 +12,7 @@ Post,
 Put --> Edit/Update
 */
 /* Read Operation --> Get route for displaying the assignments list */
+
 router.get('/',async(req,res,next)=>{
 try{
     const AssignmentList = await Assignment.find();
@@ -22,6 +23,7 @@ try{
     catch(err){
         console.error(err);
         res.render('Assignment/list',{
+            title:'Assignments',
             error:'Error on the server'
         })
     }
@@ -45,11 +47,11 @@ router.get('/add',async(req,res,next)=>{
 router.post('/add',async(req,res,next)=>{
     try{
         let newAssignment = Assignment({
-            "Name":req.body.Name,
-            "Author":req.body.Author,
-            "Published":req.body.Published,
+            "Title":req.body.Title,
+            "DateTime":req.body.DateTime,
+            "Location":req.body.Location,
             "Description":req.body.Description,
-            "Price":req.body.Price
+            "User":req.body.User
         });
         Assignment.create(newAssignment).then(()=>{
             res.redirect('/assignmentslist');
@@ -87,11 +89,11 @@ router.post('/edit/:id',async(req,res,next)=>{
         let id=req.params.id;
         let updatedAssignment = Assignment({
             "_id":id,
-            "Name":req.body.Name,
-            "Author":req.body.Author,
-            "Published":req.body.Published,
+            "Title":req.body.Title,
+            "DateTime":req.body.DateTime,
+            "Location":req.body.Location,
             "Description":req.body.Description,
-            "Price":req.body.Price
+            "User":req.body.User
         });
         Assignment.findByIdAndUpdate(id,updatedAssignment).then(()=>{
             res.redirect('/assignmentslist')

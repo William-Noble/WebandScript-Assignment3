@@ -1,15 +1,15 @@
 //const { Collection, default: mongoose } = require("mongoose");
 
-const mongoose = require("mongoose");
+let mongoose = require("mongoose");
 
 let assignmentModel = mongoose.Schema({
-    Name: String,
-    Author: String,
-    Published: String,
+    Title: String,
+    DateTime: String,
+    Location: String,
     Description: String,
-    Price: Number
+    User: String
 },
 {
-    collection:"Bio_assignments"
+    collection:"Assignments"
 });
-module.exports =mongoose.model('Assignment',assignmentModel);
+module.exports = mongoose.model('Assignment',assignmentModel);
