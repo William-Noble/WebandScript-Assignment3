@@ -45,8 +45,14 @@
                         </a>
                         </td>
                         <td class="text-center col-1">
-                            <a href="/assignmentslist/delete/<%= AssignmentList[count]._id%>"
-                                class="btn btn-danger btn-sm">
+                            <a onclick="
+                                if (confirm('Do you want to delete <%= AssignmentList[count].Title%>?')){
+                                    return true;
+                                } else {
+                                return false;
+                                }"
+                                // button functionality from: https://stackoverflow.com/questions/9139075/how-to-show-a-confirm-message-before-delete?page=2&tab=scoredesc
+                            href="/assignmentslist/delete/<%= AssignmentList[count]._id%>" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>Delete
                         </a>
                         </td>
