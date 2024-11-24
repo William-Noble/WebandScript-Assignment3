@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-let bookModel = mongoose.Schema({
+let assignmentModel = mongoose.Schema({
     Name: String,
     Author: String,
     Published: String,
@@ -10,6 +10,6 @@ let bookModel = mongoose.Schema({
     Price: Number
 },
 {
-    collection:"Bio_books"
+    collection:"Bio_assignments"
 });
-module.exports =mongoose.model('Book',bookModel);
+module.exports =mongoose.model('Assignment',assignmentModel);

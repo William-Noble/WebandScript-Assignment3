@@ -2,26 +2,26 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 // telling my router that I have this model
-let Book = require('../model/book');
-const book = require('../model/book');
-let bookController = require('../controllers/book.js')
-/* Get route for the book list - Read Operation */
+let Assignment = require('../model/assignment');
+const assignment = require('../model/assignment');
+let assignmentController = require('../controllers/assignment.js')
+/* Get route for the assignment list - Read Operation */
 /*
 GET,
 Post,
 Put --> Edit/Update
 */
-/* Read Operation --> Get route for displaying the books list */
+/* Read Operation --> Get route for displaying the assignments list */
 router.get('/',async(req,res,next)=>{
 try{
-    const BookList = await Book.find();
-    res.render('Book/list',{
-        title:'Books',
-        BookList:BookList
+    const AssignmentList = await Assignment.find();
+    res.render('Assignment/list',{
+        title:'Assignments',
+        AssignmentList:AssignmentList
     })}
     catch(err){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Assignment/list',{
             error:'Error on the server'
         })
     }
@@ -29,14 +29,14 @@ try{
 /* Create Operation --> Get route for displaying me the Add Page */
 router.get('/add',async(req,res,next)=>{
     try{
-        res.render('Book/add',{
-            title: 'Add Book'
+        res.render('Assignment/add',{
+            title: 'Add Assignment'
         })
     }
     catch(err)
     {
         console.error(err);
-        res.render('Book/list',{
+        res.render('Assignment/list',{
             error:'Error on the server'
         })
     }
@@ -44,21 +44,21 @@ router.get('/add',async(req,res,next)=>{
 /* Create Operation --> Post route for processing the Add Page */
 router.post('/add',async(req,res,next)=>{
     try{
-        let newBook = Book({
+        let newAssignment = Assignment({
             "Name":req.body.Name,
             "Author":req.body.Author,
             "Published":req.body.Published,
             "Description":req.body.Description,
             "Price":req.body.Price
         });
-        Book.create(newBook).then(()=>{
-            res.redirect('/bookslist');
+        Assignment.create(newAssignment).then(()=>{
+            res.redirect('/assignmentslist');
         })
     }
     catch(err)
     {
         console.error(err);
-        res.render('Book/list',{
+        res.render('Assignment/list',{
             error:'Error on the server'
         })
     }
@@ -67,11 +67,11 @@ router.post('/add',async(req,res,next)=>{
 router.get('/edit/:id',async(req,res,next)=>{
     try{
         const id = req.params.id;
-        const bookToEdit= await Book.findById(id);
-        res.render('Book/edit',
+        const assignmentToEdit= await Assignment.findById(id);
+        res.render('Assignment/edit',
             {
-                title:'Edit Book',
-                Book:bookToEdit
+                title:'Edit Assignment',
+                Assignment:assignmentToEdit
             }
         )
     }
@@ -85,7 +85,7 @@ router.get('/edit/:id',async(req,res,next)=>{
 router.post('/edit/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
-        let updatedBook = Book({
+        let updatedAssignment = Assignment({
             "_id":id,
             "Name":req.body.Name,
             "Author":req.body.Author,
@@ -93,13 +93,13 @@ router.post('/edit/:id',async(req,res,next)=>{
             "Description":req.body.Description,
             "Price":req.body.Price
         });
-        Book.findByIdAndUpdate(id,updatedBook).then(()=>{
-            res.redirect('/bookslist')
+        Assignment.findByIdAndUpdate(id,updatedAssignment).then(()=>{
+            res.redirect('/assignmentslist')
         })
     }
     catch(err){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Assignment/list',{
             error:'Error on the server'
         })
     }
@@ -108,13 +108,13 @@ router.post('/edit/:id',async(req,res,next)=>{
 router.get('/delete/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
-        Book.deleteOne({_id:id}).then(()=>{
-            res.redirect('/bookslist')
+        Assignment.deleteOne({_id:id}).then(()=>{
+            res.redirect('/assignmentslist')
         })
     }
     catch(error){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Assignment/list',{
             error:'Error on the server'
         })
     }
