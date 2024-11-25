@@ -1,6 +1,24 @@
 <%- include Partials/header.ejs%>
 <%- include Partials/main_nav.ejs%>
-    <!--Main content-->
-    <h1><%= title %></h1>
+    <!--Main content. If this was to be a complete application, I would use a separate file for this.-->
+    <% if(title == "Home") { %>
+        <main class="homeBody">
+            <div class="container-fluid d-flex justify-content-center">
+                <h1 class="h1" style="padding-top: 60px;"><%= title %></h1>
+            </div>
+            <hr>
+            <div class="px-5">
+                <h3>Welcome to the Modern Assignment Organizer</h3>
+                <p>Our team of top software engineers (1 amateur student) have dedicated themselves to creating one of the sites of all time</p>
+                <p>Check out the futuristic navbar technology by clicking the icon in the top right of your browser</p>
+                <p>Prepare to be blown away by the "seamless" routing protocols developed for your viewing pleasure</p>
+                <p>Rest assured that we have spared no expense to bring to you a safe easy to use program for all your assignment tracking needs</p>
+                <p>This website also supports the coolest of color schemes with our sleek terminal esk color palette</p>
+                <img src="">
+            </div>
+        </main>
+    <% } else { %>
+    <h1 style="padding-top: 60px;"><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <% } %>
 <%- include Partials/footer.ejs%>

@@ -18,7 +18,7 @@ let assignmentController = require('../controllers/assignment.js')
 
 module.exports.displayAssignmentslist = async (req,res,next)=>{
     try{
-        const AssignmentList = await Assignment.find();
+        const AssignmentList = await Assignment.find().sort({ DateTime: 1 });
         res.render('Assignment/list',{
             title:'Assignments',
             displayName: req.user ? req.user.displayName:'',
