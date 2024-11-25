@@ -5,137 +5,26 @@ const passport = require('passport');
 const DB = require('../config/db');
 userModel = require('../model/user');
 let User = userModel.User;
+let indexController = require('../controllers/index');
 
 
 /* GET index page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
-    title: 'Home',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/', indexController.displayHomePage);
 /* GET home page. */
-router.get('/home', function(req, res, next) {
-  res.render('index', {
-    title: 'Home',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/home', indexController.displayHomePage);
 /* GET About page. */
-router.get('/aboutus', function(req, res, next) {
-  res.render('index', {
-    title: 'About us',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/aboutus', indexController.displayAboutPage);
 /* GET products page. */
-router.get('/products', function(req, res, next) {
-  res.render('index', {
-    title: 'Products',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/products', indexController.displayProductPage);
 /* GET service page. */
-router.get('/service', function(req, res, next) {
-  res.render('index', {
-    title: 'Service',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/service', indexController.displayServicePage);
 /* GET contactus page. */
-router.get('/contactus', function(req, res, next) {
-  res.render('index', {
-    title: 'Contact Us',
-    displayName: req.user ? req.user.displayName:''
-  });
-});
+router.get('/contactus', indexController.displayContactPage);
 
-router.get('/login', function(req,res,next){
-	if(!req.user) //use small u in user here
-	{
-    res.render('Auth/login',
-    {
-      title:'Login',
-      message:req.flash('loginMessage'),
-      displayName: req.user ? req.user.displayName:''
-    });
-	}
-	else
-	{
-		return res.redirect('/')
-	}
-})
-router.post('/login', function(req,res,next){
-	passport.authenticate('local',(err,user,info)=>{
-		if(err)
-		{
-			return next(err)
-		}
-		if(!user)
-		{
-			req.flash('loginMessage', 'Authentication Error');
-			return res.redirect('/login');
-		}
-		req.login(user,(err)=>{
-			if(err)
-			{
-				return next(err)
-			}
-			return res.redirect('/assignmentslist');
-    })
-	})(req,res,next)
-})
-router.get('/register', function(req,res,next){
-	if(!req.user)
-	{
-		res.render('Auth/register',{
-			title: 'Register',
-			message:req.flash('registerMessage'),
-			displayName: req.user ? req.user.displayName:''
-		})
-	}
-	else
-	{
-		return res.redirect('/')
-	}
-})
-router.post('/register',function(req,res,next){
-	let newUser = new User({
-		username:req.body.username,
-		//password:req.boy.password,
-		email:req.body.email,
-		displayName:req.body.displayName
-	})
-	User.register(newUser, req.body.password, (err) =>{
-		if(err)
-		{
-			console.log("Error:Inserting the new User");
-			if(err.name=="UserExistError")
-			{
-				req.flash('registerMessage', 'Registration Error: User already exists')
-			}
-			return res.render('Auth/register', {
-				title: 'Register',
-				message:req.flash('registerMessage'),
-				displayName:req.user ? req.user.displayName:''
-			});
-		}
-		else
-		{
-			return passport.authenticate('local')(req,res,()=>{
-				res.redirect('/assignmentslist')
-			})
-		}	
-	})
-})
-router.get('/logout', function(req,res,next){
-	req.logOut(function(err){
-		if(err)
-		{
-			return next(err);
-		}
-	})
-	res.redirect('/')
-})
+router.get('/login', indexController.displayLoginPage);
+router.post('/login', indexController.processLoginPage);
+router.get('/register', indexController.displayRegisterPage);
+router.post('/register', indexController.processRegisterPage);
+router.get('/logout', indexController.performLogout);
 
 module.exports = router;
