@@ -1,4 +1,4 @@
-.NavBackground {
+.navBackground {
     background-color: rgb(3,40,48);
 }
 .homeBody
@@ -9,4 +9,9 @@
     min-width: 100vh;
     background-color: black;
     color: lime;
+}
+#tableBackground
+{
+    background-color: black;
+    color: #2323ff;
 }

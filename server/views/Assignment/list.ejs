@@ -2,50 +2,52 @@
 <%- include ../Partials/main_nav.ejs%>
 <!--Assignment Database-->
 <div class="homeBody">
-    <main class="container">
+    <main class="container" style="padding-top: 60px;">
         <div class="row">
             <div class="offset-md-1 col-md-10">
                 <h1><%= title %></h1>
                 <br>
                 <% if(typeof displayName=='string' && displayName) { %>
-                    <a href="/assignmentslist/add" class="btn btn-primary" role="button">
-                        <i class="fas fa-plus-circle"></i> Add Assignment
-                    </a>
+                    <div class="d-flex justify-content-center">
+                        <a href="/assignmentslist/add" class="btn btn-primary" role="button">
+                            <i class="fas fa-plus-circle"></i> Add Assignment
+                        </a>
+                    </div>
                     <br>
                 <% } %>
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <tr class="d-flex">
                         <% if(typeof displayName=='string' && displayName) { %>
-                            <th class="text-center col-2">Title</th>
-                            <th class="text-center col-2">DateTime</th>
-                            <th class="text-center col-1">Location</th>
-                            <th class="col-4">Description</th>
-                            <th class="text-center col-1">User</th>
-                            <th class="text-center col-1"></th>
-                            <th class="text-center col-1"></th>
+                            <th class="text-center col-2" id="tableBackground">Title</th>
+                            <th class="text-center col-2" id="tableBackground">DateTime</th>
+                            <th class="text-center col-1" id="tableBackground">Location</th>
+                            <th class="col-4" id="tableBackground">Description</th>
+                            <th class="text-center col-1" id="tableBackground">User</th>
+                            <th class="text-center col-1" id="tableBackground"></th>
+                            <th class="text-center col-1" id="tableBackground"></th>
                         <% } else { %>
-                            <th class="text-center col-2">Title</th>
-                            <th class="text-center col-2">DateTime</th>
-                            <th class="text-center col-1">Location</th>
-                            <th class="col-6">Description</th>
-                            <th class="text-center col-1">User</th>
+                            <th class="text-center col-2" id="tableBackground">Title</th>
+                            <th class="text-center col-2" id="tableBackground">DateTime</th>
+                            <th class="text-center col-1" id="tableBackground">Location</th>
+                            <th class="col-6" id="tableBackground">Description</th>
+                            <th class="text-center col-1" id="tableBackground">User</th>
                         <% } %>
                     </tr>
                     <% for(let count=0;count<AssignmentList.length;count++) { %>
                     <tr class="d-flex">
                         <% if(typeof displayName=='string' && displayName) { %>
-                            <td class="text-center col-2"><%= AssignmentList[count].Title %></td>
-                            <td class="text-center col-2"><%= AssignmentList[count].DateTime %></td>
-                            <td class="text-center col-1"><%= AssignmentList[count].Location %></td>
-                            <td class="col-4"><%= AssignmentList[count].Description %> </td>
-                            <td class="text-center col-1"><%= AssignmentList[count].User %></td>
-                            <td class="text-center col-1">
+                            <td class="text-center col-2 text-wrap" id="tableBackground"><%= AssignmentList[count].Title %></td>
+                            <td class="text-center col-2 text-wrap" id="tableBackground"><%= AssignmentList[count].DateTime %></td>
+                            <td class="text-center col-1 text-wrap" id="tableBackground"><%= AssignmentList[count].Location %></td>
+                            <td class="col-4 text-wrap" id="tableBackground"><%= AssignmentList[count].Description %> </td>
+                            <td class="text-center col-1 text-wrap" id="tableBackground"><%= AssignmentList[count].User %></td>
+                            <td class="text-center col-1 text-wrap" id="tableBackground">
                                 <a href="/assignmentslist/edit/<%= AssignmentList[count]._id%>"
                                     class="btn btn-primary btn-sm">
                                 <i class="fas fa-pencil-alt"></i>Edit
                             </a>
                             </td>
-                            <td class="text-center col-1">
+                            <td class="text-center col-1 text-wrap" id="tableBackground">
                                 <a onclick="
                                     if (confirm('Do you want to delete <%= AssignmentList[count].Title%>?')){
                                         return true;
@@ -58,11 +60,11 @@
                             </a>
                             </td>
                         <% } else { %>
-                            <td class="text-center col-2"><%= AssignmentList[count].Title %></td>
-                            <td class="text-center col-2"><%= AssignmentList[count].DateTime %></td>
-                            <td class="text-center col-1"><%= AssignmentList[count].Location %></td>
-                            <td class="col-6"><%= AssignmentList[count].Description %> </td>
-                            <td class="text-center col-1"><%= AssignmentList[count].User %></td>
+                            <td class="text-center col-2" id="tableBackground"><%= AssignmentList[count].Title %></td>
+                            <td class="text-center col-2" id="tableBackground"><%= AssignmentList[count].DateTime %></td>
+                            <td class="text-center col-1" id="tableBackground"><%= AssignmentList[count].Location %></td>
+                            <td class="col-6" id="tableBackground"><%= AssignmentList[count].Description %> </td>
+                            <td class="text-center col-1" id="tableBackground"><%= AssignmentList[count].User %></td>
                         <% } %>
                     </tr>    
                         <%} %>
