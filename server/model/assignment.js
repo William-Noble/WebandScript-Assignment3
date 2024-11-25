@@ -2,6 +2,7 @@
 
 let mongoose = require("mongoose");
 
+// create model for mongoose database
 let assignmentModel = mongoose.Schema({
     Title: String,
     DateTime: String,
@@ -12,4 +13,5 @@ let assignmentModel = mongoose.Schema({
 {
     collection:"Assignments"
 });
+// export model
 module.exports = mongoose.model('Assignment',assignmentModel);

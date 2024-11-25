@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 
+// requireAuth function is not needed on this page
 function requireAuth(req,res,next)
 {
 	if(!req.isAuthenticated())

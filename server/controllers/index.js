@@ -49,7 +49,7 @@ module.exports.displayContactPage = (req, res, next) => {
     displayName: req.user ? req.user.displayName:''
   });
 };
-
+// Get login page
 module.exports.displayLoginPage = (req,res,next) => {
 	if(!req.user) //use small u in user here
 	{
@@ -65,6 +65,7 @@ module.exports.displayLoginPage = (req,res,next) => {
 		return res.redirect('/')
 	}
 }
+// post operation for login page
 module.exports.processLoginPage = (req,res,next) => {
 	passport.authenticate('local',(err,user,info)=>{
 		if(err)
@@ -85,6 +86,7 @@ module.exports.processLoginPage = (req,res,next) => {
     })
 	})(req,res,next)
 }
+// get register page
 module.exports.displayRegisterPage = (req,res,next) => {
 	if(!req.user)
 	{
@@ -99,6 +101,7 @@ module.exports.displayRegisterPage = (req,res,next) => {
 		return res.redirect('/')
 	}
 }
+// post operation for register page
 module.exports.processRegisterPage = (req,res,next) => {
 	let newUser = new User({
 		username:req.body.username,
@@ -128,6 +131,7 @@ module.exports.processRegisterPage = (req,res,next) => {
 		}	
 	})
 }
+// perform logout function
 module.exports.performLogout = (req,res,next) => {
 	req.logOut(function(err){
 		if(err)

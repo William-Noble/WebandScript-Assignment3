@@ -20,11 +20,15 @@ router.get('/products', indexController.displayProductPage);
 router.get('/service', indexController.displayServicePage);
 /* GET contactus page. */
 router.get('/contactus', indexController.displayContactPage);
-
+/* GET Login page. */
 router.get('/login', indexController.displayLoginPage);
+/* POST Login page. */
 router.post('/login', indexController.processLoginPage);
+/* GET Register page. */
 router.get('/register', indexController.displayRegisterPage);
+/* POST Register page. */
 router.post('/register', indexController.processRegisterPage);
+/* GET Logout page. */
 router.get('/logout', indexController.performLogout);
 
 module.exports = router;

@@ -1,6 +1,8 @@
+/* set color for navigation bar background */
 .navBackground {
     background-color: rgb(3,40,48);
 }
+/* style for the main body of the entire web page */
 .homeBody
 {
     height: 100%;
@@ -10,6 +12,7 @@
     background-color: black;
     color: lime;
 }
+/* style for the table in assignments page */
 #tableBackground
 {
     background-color: black;

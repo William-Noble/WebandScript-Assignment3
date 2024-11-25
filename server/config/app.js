@@ -11,6 +11,8 @@ let localStratagy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
 let app = express();
+
+// create routers for each page
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let assignmentRouter = require('../routes/assignment');
@@ -31,6 +33,7 @@ mongoDB.once('open',()=>{
 });
 mongoose.connect(DB.URI,{useNewURIParser:true,useUnifiedTopology:true})
 
+// create session
 app.use(session({
 	secret:"SomeSecret",
 	saveUninitialized: false,
@@ -71,6 +74,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+// use routers when correct address is typed into url
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/assignmentslist',assignmentRouter);

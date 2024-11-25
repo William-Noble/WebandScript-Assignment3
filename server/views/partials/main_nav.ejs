@@ -1,24 +1,26 @@
 <!--Navbar-->
-<nav class="navbar navBackground navbar-dark fixed-top">
+<nav class="navbar navBackground navbar-dark fixed-top"> <!--Nav Bar creation-->
   <div class="container-fluid">
     <a class="navbar-brand" href="/">INFR3120 Assignment 3
+    <!--display username if the user is authenticated-->
     <% if(typeof displayName=='string' && displayName) { %>
         &nbsp; &nbsp; 
         <i class="fas fa-lg fa-user"></i>
         Welcome, <%= displayName %>
     <% } %>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"> <!--toggle button for nav bar-->
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"> <!--side "offcanvas" popup container-->
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pages</h5>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pages</h5> <!--off canvas title-->
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body navBackground">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item fs-3 py-3">
+          <!--check current page to determine if the nav link should be active-->
             <% if(title=="Home") { %>
               <a class="nav-link active" href="/home">
             <% } else {%>
@@ -27,6 +29,7 @@
             <i class="fa-solid fa-house-chimney-user"></i> Home</a>
           </li>
           <li class="nav-item fs-3 py-3">
+          <!--check current page to determine if the nav link should be active-->
             <% if(title=="Assignments") { %>
               <a class="nav-link active" href="/assignmentslist">
             <% } else {%>
@@ -34,6 +37,7 @@
             <% } %>  
             <i class="fa-solid fa-book"></i> Assignments</a>
           </li>
+          <!--determine login status and display the appropriate button (login/logout)-->
           <% if(typeof displayName=='string' && displayName) { %>
             <li class="nav-item fs-3 py-3">
               <a href="/logout" class="nav-link">

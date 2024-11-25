@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let passportLocalMongoose = require('passport-local-mongoose');
+// define schema for User information
 let User = mongoose.Schema({
 	username:
 	{

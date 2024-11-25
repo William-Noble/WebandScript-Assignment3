@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 
+// checks if the user is logged in and if not sends them to the log in page
 function requireAuth(req,res,next)
 {
 	if(!req.isAuthenticated())
@@ -16,6 +17,7 @@ let Assignment = require('../model/assignment');
 const assignment = require('../model/assignment');
 let assignmentController = require('../controllers/assignment.js')
 
+// display assignment list function
 module.exports.displayAssignmentslist = async (req,res,next)=>{
     try{
         const AssignmentList = await Assignment.find().sort({ DateTime: 1 });
