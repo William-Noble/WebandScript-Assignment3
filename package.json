@@ -15,7 +15,6 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-session": "^1.18.1",
-    "http-errors": "~1.6.3",
     "mongoose": "^8.8.0",
     "morgan": "~1.9.1",
     "passport": "^0.7.0",
@@ -29,6 +28,7 @@
     "@types/mongoose": "^5.11.96",
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
-    "@types/passport-local-mongoose": "^6.1.5"
+    "@types/passport-local-mongoose": "^6.1.5",
+    "http-errors": "^2.0.0"
   }
 }
