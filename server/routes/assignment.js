@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 
-// requireAuth function is not needed on this page
+// checks if the user is logged in and if not sends them to the log in page
 function requireAuth(req,res,next)
 {
 	if(!req.isAuthenticated())
