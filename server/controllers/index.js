@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
-
+let express = require('express');
+let router = express.Router();
+let jwt = require('jsonwebtoken');
 const passport = require('passport');
-const DB = require('../config/db');
+let DB = require('../config/db');
+
 userModel = require('../model/user');
 let User = userModel.User;
 
@@ -82,8 +83,28 @@ module.exports.processLoginPage = (req,res,next) => {
 			{
 				return next(err)
 			}
-			return res.redirect('/assignmentslist');
-    })
+			const payload = 
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.secret, {
+                expiresIn: 604800 // 1 week
+            });
+
+            // TODO - Getting Ready to convert to API
+            // res.json({success: true, msg: 'User Logged in Successfully!', user: {
+            //     id: user._id,
+            //     displayName: user.displayName,
+            //     username: user.username,
+            //     email: user.email
+            // }, token: authToken});
+			return res.redirect('/');
+
+    	})
 	})(req,res,next)
 }
 // get register page

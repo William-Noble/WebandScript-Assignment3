@@ -39,4 +39,37 @@
 		</div>
 	</main>
 </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Store the JWT token in localStorage or cookies
+                    localStorage.setItem('token', result.token);
+
+                    // Redirect to the homepage
+                    window.location.href = '/home';
+                } else {
+                    console.error('Login failed:', result.msg);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 <%- include('../partials/footer.ejs') %>

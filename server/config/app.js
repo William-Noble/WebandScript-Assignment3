@@ -5,12 +5,18 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let session = require('express-session');
 let passport = require('passport');
+
+let passportJWT = require('passport-jwt');
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
+
 let passportLocal = require('passport-local');
 // very important line below !!!
-let localStratagy = passportLocal.Strategy;
+let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
 let app = express();
+let cors = require('cors');
 
 // create routers for each page
 let indexRouter = require('../routes/index');
@@ -22,7 +28,7 @@ let assignmentRouter = require('../routes/assignment');
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 // getting-started.js
-const mongoose = require('mongoose');
+let mongoose = require('mongoose');
 let DB = require('./db');
 // point mongoose to the DB URI
 mongoose.connect(DB.URI);
@@ -40,7 +46,7 @@ app.use(session({
 	resave: false
 }))
 
-let cors = require('cors')
+
 let userModel = require('../model/user');
 let User = userModel.User;
 
@@ -74,6 +80,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+
+let jwtoptions = {};
+jwtoptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtoptions.secretOrKey = DB.secret;
+
 // use routers when correct address is typed into url
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -96,5 +107,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error',{title:'Error'});
 });
+let Strategy = new JWTStrategy(jwtoptions,(jwt_payload,done)=>{
+  User.findById(jwt_payload.id, (err, user) => {
+   if (err) return done(err, false);
+   return done(null, user);
+  });
+});
 
+passport.use(Strategy);
 module.exports = app;
